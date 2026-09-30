@@ -1,0 +1,60 @@
+{
+  "observations": {
+    "original_train": 50000,
+    "train": 45000,
+    "validation": 5000,
+    "test": 10000
+  },
+  "classes": [
+    "airplane",
+    "automobile",
+    "bird",
+    "cat",
+    "deer",
+    "dog",
+    "frog",
+    "horse",
+    "ship",
+    "truck"
+  ],
+  "counts": {
+    "airplane": 5000,
+    "automobile": 5000,
+    "bird": 5000,
+    "cat": 5000,
+    "deer": 5000,
+    "dog": 5000,
+    "frog": 5000,
+    "horse": 5000,
+    "ship": 5000,
+    "truck": 5000
+  },
+  "train_mean": [
+    0.49113735123911295,
+    0.48211118702342115,
+    0.4464489876089326
+  ],
+  "train_std": [
+    0.24686913619557826,
+    0.24343012612627368,
+    0.2616033939151677
+  ],
+  "imagenet_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "imagenet_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "input_shape": [
+    32,
+    32,
+    3
+  ],
+  "pixel_multiplier": 12.25,
+  "device": "cuda",
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU"
+}
