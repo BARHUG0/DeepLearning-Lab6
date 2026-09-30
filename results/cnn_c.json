@@ -1,0 +1,96 @@
+{
+  "config": {
+    "name": "cnn_c",
+    "kind": "cnn",
+    "width": 32,
+    "dropout": 0.4,
+    "lr": 0.01,
+    "epochs": 3,
+    "batch": 128
+  },
+  "reduced": false,
+  "train_images": 45000,
+  "history": [
+    {
+      "epoch": 1,
+      "train": {
+        "loss": 1.5232471875508626,
+        "accuracy": 0.43391111111111114,
+        "precision": 0.42675840299841294,
+        "recall": 0.43391111111111114,
+        "f1": 0.4292844987314279
+      },
+      "validation": {
+        "loss": 1.3339844116210937,
+        "accuracy": 0.5098,
+        "precision": 0.5779676379960507,
+        "recall": 0.5097999999999999,
+        "f1": 0.48873638013925874
+      },
+      "train_seconds": 23.536537199979648,
+      "elapsed_seconds": 24.92315739998594
+    },
+    {
+      "epoch": 2,
+      "train": {
+        "loss": 1.1372972780015733,
+        "accuracy": 0.5927555555555556,
+        "precision": 0.5870545299285503,
+        "recall": 0.5927555555555556,
+        "f1": 0.5892370805035536
+      },
+      "validation": {
+        "loss": 1.0668422592163085,
+        "accuracy": 0.6124,
+        "precision": 0.6417290408525752,
+        "recall": 0.6123999999999999,
+        "f1": 0.6135902995346033
+      },
+      "train_seconds": 24.15302170003997,
+      "elapsed_seconds": 50.526724399998784
+    },
+    {
+      "epoch": 3,
+      "train": {
+        "loss": 0.9932114198684693,
+        "accuracy": 0.6478666666666667,
+        "precision": 0.6439561611709499,
+        "recall": 0.6478666666666667,
+        "f1": 0.6455497195825305
+      },
+      "validation": {
+        "loss": 1.0929821886062623,
+        "accuracy": 0.6246,
+        "precision": 0.6781157088810386,
+        "recall": 0.6245999999999999,
+        "f1": 0.6223249512220875
+      },
+      "train_seconds": 24.50949089997448,
+      "elapsed_seconds": 76.49521659995662
+    }
+  ],
+  "selected_epoch": 3,
+  "best_validation": {
+    "loss": 1.0929821886062623,
+    "accuracy": 0.6246,
+    "precision": 0.6781157088810386,
+    "recall": 0.6245999999999999,
+    "f1": 0.6223249512220875
+  },
+  "classes": [
+    "airplane",
+    "automobile",
+    "bird",
+    "cat",
+    "deer",
+    "dog",
+    "frog",
+    "horse",
+    "ship",
+    "truck"
+  ],
+  "total_params": 289194,
+  "trainable_params": 289194,
+  "total_seconds": 76.5055154999718,
+  "peak_gpu_bytes": 102931456
+}
