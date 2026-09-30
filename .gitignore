@@ -220,3 +220,7 @@ __marimo__/
 .streamlit/secrets.toml
 
 *.md
+!CONTRIBUTING.md
+data/
+results/*.pt
+results/*.log
