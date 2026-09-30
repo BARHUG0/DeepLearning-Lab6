@@ -98,7 +98,7 @@ def loaders(kind, train_indices, val_indices, batch_size):
     test = datasets.CIFAR10(root=DATA, train=False, transform=eval_transform)
     kwargs = {"batch_size": batch_size, "num_workers": 0, "pin_memory": DEVICE.type == "cuda"}
     return (
-        DataLoader(training, shuffle=True, **kwargs),
+        DataLoader(training, shuffle=len(train_indices) > 0, **kwargs),
         DataLoader(validation, shuffle=False, **kwargs),
         DataLoader(test, shuffle=False, **kwargs),
     )
@@ -188,7 +188,7 @@ def epoch(model, loader, optimizer=None, scaler=None):
 def run(config, train_indices, val_indices, classes, reduced=False):
     name = config["name"] + ("_10pct" if reduced else "")
     output = RESULTS / f"{name}.json"
-    if output.exists():
+    if output.exists() and (RESULTS / f"{name}.pt").exists():
         print("Already completed:", name, flush=True)
         return json.loads(output.read_text(encoding="utf-8"))
     torch.manual_seed(SEED)
@@ -249,7 +249,8 @@ def evaluate_selected(config, classes, reduced=False):
     if not reduced:
         from torch.profiler import ProfilerActivity, profile
 
-        image = torch.randn(1, 3, 32 if config["kind"] == "cnn" else SIZE, device=DEVICE)
+        size = 32 if config["kind"] == "cnn" else SIZE
+        image = torch.randn(1, 3, size, size, device=DEVICE)
         model.eval()
         with torch.no_grad():
             with profile(activities=[ProfilerActivity.CPU, ProfilerActivity.CUDA] if DEVICE.type == "cuda" else [ProfilerActivity.CPU], with_flops=True) as recording:
@@ -327,7 +328,7 @@ def plot_results():
     fig, ax = plt.subplots(figsize=(8, 5))
     for kind, name in winners.items():
         result = next(item for item in runs if item["config"]["name"] == name)
-        ax.plot([entry["elapsed_seconds"] / 60 for entry in result["history"]],
+        ax.plot(np.cumsum([entry["train_seconds"] for entry in result["history"]]) / 60,
                 [entry["validation"]["accuracy"] for entry in result["history"]], marker="o", label=kind)
     ax.set(xlabel="Tiempo acumulado de entrenamiento (min)", ylabel="Accuracy de validación")
     ax.legend()
